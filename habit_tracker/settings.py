@@ -17,7 +17,7 @@ import os
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
     RENDER=(bool, False)
 )
 
