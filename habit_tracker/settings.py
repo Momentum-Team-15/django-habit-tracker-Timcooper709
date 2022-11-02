@@ -18,7 +18,14 @@ import os
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
+    RENDER=(bool, False)
 )
+
+if env("RENDER"):
+    ALLOWED_HOSTS.append(env("RENDER_EXTERNAL_HOSTNAME"))
+    DJANGO_SUPERUSER_USERNAME=env("DJANGO_SUPERUSER_USERNAME")
+    DJANGO_SUPERUSER_PASSWORD=env("DJANGO_SUPERUSER_PASSWORD")
+    DJANGO_SUPERUSER_EMAIL=env("DJANGO_SUPERUSER_EMAIL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'habits',
     'django_extensions',
@@ -61,6 +69,7 @@ REGISTRATION_AUTO_LOGIN = True
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,6 +144,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+```python
+# settings.py
+
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles" # <-- add this
+
+# add the following lines
+if not DEBUG: 
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
