@@ -21,6 +21,8 @@ env = environ.Env(
     RENDER=(bool, False)
 )
 
+ALLOWED_HOSTS = []
+
 if env("RENDER"):
     ALLOWED_HOSTS.append(env("RENDER_EXTERNAL_HOSTNAME"))
     DJANGO_SUPERUSER_USERNAME=env("DJANGO_SUPERUSER_USERNAME")
@@ -44,7 +46,7 @@ DEBUG = env('DEBUG')
 
 SECRET_KEY = env('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
