@@ -10,7 +10,8 @@
     <p>goal: {{habit.goal}}</p>
     <p>unit: {{habit.unit}}</p>   
     <a href="{% url 'habit_detail' habit.pk %}">Habit Detail</a>  
-    <a href="{% url 'delete_habit' habit.pk %}"><button>Delete</button></a>    
+    <a href="{% url 'delete_habit' habit.pk %}"><button>Delete</button></a> 
+    <a href="{% url 'edit_habit' habit.pk %}"><button>Edit</button></a> 
 
 {% endfor %}
 {% endblock %}    

@@ -2,6 +2,7 @@
 {% load static %}
 
     {% block content %}
+    <a href="{% url 'list_habit' %}"> Home</a>
 
     <h1>{{habit.name.upper}}</h1>
 
@@ -30,6 +31,8 @@
             {{ form.as_p }}
             <div>
                 <button type="submit">Submit</button>
+                
+                
             </div>
         </form>
 
