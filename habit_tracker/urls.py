@@ -23,5 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
 
-    path('', views.list_habits, name="list_habits"),
+    path('', views.list_habit, name="list_habit"),
+    path('habits/add/', views.create_habit, name="create_habit"),
+    path('habits/<int:pk>/', views.habit_detail, name="habit_detail"),
+    path('habits/<int:pk>/delete', views.delete_habit, name="delete_habit"),  
 ]
