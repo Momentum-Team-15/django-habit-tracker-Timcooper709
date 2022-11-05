@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Habits</h1>
+<button><a href="{% url 'log_out' %}"> Logout</a></button>
+
+
+<h1>{{request.user}}'s Habits</h1>
 
 <a href="{% url 'create_habit' %}">Add Habit</a>
 {% for habit in habits %}

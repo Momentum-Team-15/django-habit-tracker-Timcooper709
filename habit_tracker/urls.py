@@ -22,6 +22,8 @@ urlpatterns = [
     path('accounts/', include('registration.backends.default.urls')),
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path("accounts/logout/",views.log_out, name ='log_out'),
+
 
     path('', views.list_habit, name="list_habit"),
     path('habits/add/', views.create_habit, name="create_habit"),

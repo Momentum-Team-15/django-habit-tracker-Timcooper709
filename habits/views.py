@@ -2,12 +2,16 @@ from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Habit, DateRecord
 from .forms import HabitForm, DateRecordForm
+from django.contrib.auth.decorators import  login_required
+from django.contrib.auth import logout
 
-# Create your views here.
+
+@login_required
 def list_habit(request):
-    habits = Habit.objects.all()
+    habits = Habit.objects.filter(user=request.user)
     return render(request, 'list_habit.html',{"habits":habits})
 
+@login_required
 def create_habit(request):
     if request.method == 'GET':
         form = HabitForm()
@@ -21,7 +25,7 @@ def create_habit(request):
 
     return render(request, "create_habit.html", {"form":form})
 
-
+@login_required
 def habit_detail(request, pk):
     habit = Habit.objects.get(pk=pk)
     daterecords = DateRecord.objects.filter(habit=habit)
@@ -40,6 +44,7 @@ def habit_detail(request, pk):
     context["form"] = form
     return render(request, "habit_detail.html", context)
 
+@login_required
 def delete_habit(request,pk):
     habit = get_object_or_404(Habit, pk=pk)
     if request.method =="POST":
@@ -48,6 +53,7 @@ def delete_habit(request,pk):
 
     return render(request, "delete_habit.html", {"habit":habit})   
 
+@login_required
 def edit_habit(request,pk):
     habit = get_object_or_404(Habit, pk=pk)
     if request.method == 'GET':
@@ -60,6 +66,8 @@ def edit_habit(request,pk):
 
     return render(request, "edit_habit.html", {"form":form, "habit":habit})
 
-
+def log_out(request):
+    logout(request)
+    return redirect ('log_out')
 
 

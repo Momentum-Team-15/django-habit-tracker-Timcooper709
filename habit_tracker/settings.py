@@ -99,7 +99,14 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "/"
+
+LOGOUT_REDIRECT_URL = "/"
+
+
 WSGI_APPLICATION = 'habit_tracker.wsgi.application'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Database
