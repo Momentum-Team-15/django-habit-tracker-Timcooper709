@@ -31,7 +31,8 @@ urlpatterns = [
     path('habits/<int:pk>/', views.habit_detail, name="habit_detail"),
     path('habits/<int:pk>/delete', views.delete_habit, name="delete_habit"), 
     path('habits/<int:pk>/edit',views.edit_habit, name="edit_habit"), 
+    
     path('api-auth/', include('rest_framework.urls')),
-    path('api/habits/', api_views.HabitListView()), name=
+    path('api/', include("api.urls"))
 
 ]
