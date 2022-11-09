@@ -60,9 +60,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
+    'rest_framework',
     'habits',
     'django_extensions',
     'debug_toolbar',
+    'api',
+    
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -160,3 +163,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if not DEBUG: 
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES':[
+            'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        ]
+}
+

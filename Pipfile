@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 django-registration-redux = "*"
 whitenoise = "*"
 gunicorn = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
