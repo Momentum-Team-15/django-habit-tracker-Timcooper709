@@ -31,4 +31,4 @@ class DateRecord(models.Model):
             ]        
 
     def __str__(self):
-        return self.habit        
+        return self.habit.name        
