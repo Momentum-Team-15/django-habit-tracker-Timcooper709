@@ -24,8 +24,7 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
             instance.delete()
 
     def perform_update(self, serializer):
-        if instance.user == self.request.user:
-            serializer.save(user=self.request.user)
+        serializer.save(user=self.request.user)
 
 
 
