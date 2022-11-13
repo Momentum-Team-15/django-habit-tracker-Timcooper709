@@ -19,3 +19,7 @@ class DateRecordSerializer(serializers.ModelSerializer):
         model = DateRecord
         fields = ['pk', 'habit', 'actual', 'date',]        
 
+class CreateHabitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Habit
+        fields = ['name', 'goal', 'unit', 'planstart', 'journal',]

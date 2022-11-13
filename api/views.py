@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.views import Response
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
 
 from habits.models import User, DateRecord, Habit
-from .serializers import HabitSerializer
+from .serializers import HabitSerializer, CreateHabitSerializer
 
 
 # Create your views here.
@@ -25,6 +25,13 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
+
+class HabitCreateView (CreateAPIView):
+    serializer_class = CreateHabitSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 
 
