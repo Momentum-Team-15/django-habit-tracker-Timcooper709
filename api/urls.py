@@ -12,4 +12,10 @@ urlpatterns = [
  
  path('habits/create/', api_views.HabitCreateView.as_view(), name='habit-create-api'),
  # POST REQUEST
+
+ path('daterecord/<int:pk>/', api_views.DateRecordDetailView.as_view(), name='daterecord-detail-api'),
+ # GET/PATCH/DELETE REQUEST
+ 
+ path('daterecord/create/', api_views.DateRecordCreateView.as_view(), name='daterecord-create-api'),
+ # POST REQUEST
 ]
