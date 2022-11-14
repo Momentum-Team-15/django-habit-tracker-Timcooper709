@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+<a href="{% url 'list_habit' %}"> Home</a>
+<h2>Add a Habit</h2>
+
+<form action="{% url 'create_habit' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button>submit</button> 
+</form>
+<a href="{% url 'list_habit' %}"><button>cancel</button></a>
+
+{% endblock %}

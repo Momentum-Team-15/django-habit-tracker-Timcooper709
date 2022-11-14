@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block content %}
+    <a href="{% url 'list_habit' %}"> Home</a>
+
+    <h1>{{habit.name.upper}}</h1>
+
+    <p>{{habit.journal}}</p>
+    <h3>Goal:{{habit.name}} {{habit.goal}} {{habit.unit}}</h3>
+    <p>Planned Start Date: {{habit.planstart}}</p>
+
+    <h1>Goal Progress</h1>
+    {% for daterecord in daterecords %}
+
+
+            <div>
+                <h3>Date attempted: {{ daterecord.date }}</h3>
+                <p>actual {{habit.unit}} that {{request.user}} was able to {{habit.name}}: {{daterecord.actual}}</p>
+
+            </div>
+
+    {% endfor %}
+    
+    {% if error_msg %}
+    <h1>{{ error_msg}}</h1>
+    {% endif %}
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button type="submit">Submit</button>
+                
+                
+            </div>
+        </form>
+
+    
+    {% endblock %}
+</body>
+</html>
